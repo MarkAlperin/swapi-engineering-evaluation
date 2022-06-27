@@ -3,15 +3,16 @@ import React, { useState, useEffect } from "react";
 import api from "../api/index";
 
 const AppContext = React.createContext({
-  searchTerm: "",
+  searchTerm: "helloWorld",
   setSearchTerm: () => {},
 });
 
 export const AppContextProvider = ({ children }) => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState("hello");
 
   useEffect(() => {
     // this will probably execute an initial api call...
+
   }, []);
 
   return (
