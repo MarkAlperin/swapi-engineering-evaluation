@@ -8,17 +8,13 @@ const AllPlanetsPage = () => {
   const appCtx = useContext(AppContext);
   const height = window.innerHeight * 0.8;
 
-  const planetClickHandler = (planet) => {
-    // appCtx.setCurrentPlanet()
-    console.log(planet)
-  }
 
   return (
     <div>
       <h1>This is the All Planets Page</h1>
       <PlanetsContainer height={height}>
         {appCtx.planets.map((planet, idx) => (
-          <PlanetCard key={idx} planet={planet} planetClickHandler={planetClickHandler}/>
+          <PlanetCard key={idx} planet={planet} />
         ))}
       </PlanetsContainer>
     </div>
