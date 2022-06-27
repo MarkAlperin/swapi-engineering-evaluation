@@ -12,8 +12,10 @@ export const AppContextProvider = ({ children }) => {
 
   useEffect(() => {
     // this will probably execute an initial api call...
-
-  }, []);
+    api.getAllPlanets().then((data) => {
+      console.log(data);
+    }
+  )}, []);
 
   return (
     <AppContext.Provider
