@@ -1,5 +1,3 @@
-
-
 const helpers = {
 
   getNumFromString: (str) => {
@@ -15,6 +13,10 @@ const helpers = {
     });
   },
 
+  formatNestedResidentData: (data, nestedResidentData) => {
+    const key = Object.keys(data)[0];
+    return {...nestedResidentData, [key]: data[key]};
+  },
 };
 
 export default helpers;

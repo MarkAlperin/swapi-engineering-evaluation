@@ -1,33 +1,33 @@
 import axios from "axios";
 
 const api = {
-  getAllPlanets: async (options, url = "https://swapi.dev/api/planets", planets = []) => {
+
+  getAllSwapi: async (
+    keyword,
+    initialLoad = false ,
+    url,
+    results = [],
+  ) => {
     try {
+      url = url || `https://swapi.dev/api/${keyword}`;
       const response = await axios.get(url);
-      planets = planets.concat(response.data.results);
-      if (!options.firstReq &&  response.data.next) {
-        return api.getAllPlanets({firstReq: false}, response.data.next, planets);
+      results = results.concat(response.data.results);
+
+      if (!initialLoad && response.data.next) {
+        return api.getAllSwapi(
+          keyword,
+          { initialLoad: false },
+          response.data.next,
+          results
+        );
       }
-      return planets;
-    }
-    catch (err) {
+      return {[keyword]: results};
+
+    } catch (err) {
       console.error(err);
     }
   },
 
-  getAllResidents: async (url = "https://swapi.dev/api/people/", residents = []) => {
-    try {
-      const response = await axios.get(url);
-      residents = residents.concat(response.data.results);
-      if (response.data.next) {
-        return api.getAllResidents(response.data.next, residents);
-      }
-      return residents;
-    }
-    catch (err) {
-      console.error(err);
-    }
-  }
 };
 
 export default api;
