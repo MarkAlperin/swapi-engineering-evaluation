@@ -7,12 +7,12 @@ import SearchBar from "./SearchBar";
 const Header = () => {
   return (
     <HeaderContainer>
-      <SearchBar />
       <StyledP>Star Wars Planets and People</StyledP>
+      <SearchBar />
       <NavLinksContainer>
         <NavLink text="All Planets" link="/" />
         <NavLink text="Planet Info" link="/planet" />
-        <NavLink text="Residents" link="/residents" />
+        <NavLink text="People" link="/residents" />
       </NavLinksContainer>
     </HeaderContainer>
   );

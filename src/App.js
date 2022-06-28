@@ -5,12 +5,10 @@ import Router from "./components/Routes/Router";
 
 function App() {
   return (
-    <>
-      <AppContextProvider>
-        <Router />
-      </AppContextProvider>
-    </>
+    <AppContextProvider>
+      <Router />
+    </AppContextProvider>
   );
-};
+}
 
 export default App;

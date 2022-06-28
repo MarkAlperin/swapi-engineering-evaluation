@@ -1,25 +1,39 @@
-import React, { useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 
 import AppContext from "../../context/appContext";
 
 const SearchBar = () => {
   const appCtx = useContext(AppContext);
+  const [searchInput, setSearchInput] = useState("");
   const width = window.innerWidth * 0.4;
+
+
+  useEffect(() => {
+    let debouncer;
+    clearTimeout(debouncer);
+    debouncer = setTimeout(() => {
+      appCtx.setSearchInput(searchInput);
+    }, 250);
+    return () => {
+      clearTimeout(debouncer);
+    }
+
+  }, [searchInput]);
 
   return (
     <SearchBarContainer width={width}>
-      <SearchBarInput  placeholder="Search for a planet or resident"on/>
+      <SearchBarInput
+        placeholder="Search for a planet..."
+        onChange={(e) => {setSearchInput(e.target.value)}}
+      />
     </SearchBarContainer>
   );
-
-
-
 };
 
 export default SearchBar;
 
-const SearchBarContainer = styled.input`
+const SearchBarContainer = styled.div`
   width: ${({ width }) => width}px;
   display: flex;
   flex-direction: row;
