@@ -10,6 +10,7 @@ const PlanetCard = ({ planet }) => {
 
   const planetClickHandler = () => {
     appCtx.setCurrentPlanet(planet);
+    appCtx.setCurrentResidentsHandler(planet.residents);
     navigate("/planet-page");
   };
 
@@ -19,7 +20,7 @@ const PlanetCard = ({ planet }) => {
       <StyledSpan>
         <p>Terrain: {planet.terrain}</p>
 
-        <StyledP>Population: {planet.population}</StyledP>
+        <StyledP>Pop: {planet.population}</StyledP>
 
         <StyledP>Residents: {planet.residents.length}</StyledP>
       </StyledSpan>
