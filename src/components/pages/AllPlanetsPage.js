@@ -9,16 +9,15 @@ const AllPlanetsPage = () => {
   const appCtx = useContext(AppContext);
   const height = window.innerHeight * 0.85;
 
-
   return (
     <>
-    <Header />
+      <Header placeholder={"planet"}/>
       <PlanetsContainer height={height}>
         {appCtx.planets.map((planet, idx) => (
           <PlanetCard key={idx} planet={planet} />
         ))}
       </PlanetsContainer>
-      </>
+    </>
   );
 };
 
@@ -28,7 +27,7 @@ const PlanetsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: ${({height}) => height}px;
+  height: ${({ height }) => height}px;
   overflow-y: scroll;
   padding: 10px;
 `;

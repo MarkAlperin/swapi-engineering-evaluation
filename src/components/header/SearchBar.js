@@ -3,11 +3,12 @@ import styled from "styled-components";
 
 import AppContext from "../../context/appContext";
 
-const SearchBar = () => {
+const SearchBar = ({ placeholder }) => {
   const appCtx = useContext(AppContext);
   const [searchInput, setSearchInput] = useState("");
   const width = window.innerWidth * 0.4;
 
+  console.log(placeholder);
 
   useEffect(() => {
     let debouncer;
@@ -17,15 +18,16 @@ const SearchBar = () => {
     }, 250);
     return () => {
       clearTimeout(debouncer);
-    }
-
+    };
   }, [searchInput]);
 
   return (
     <SearchBarContainer width={width}>
       <SearchBarInput
-        placeholder="Search for a planet..."
-        onChange={(e) => {setSearchInput(e.target.value)}}
+        placeholder={`Search for a ${placeholder}...`}
+        onChange={(e) => {
+          setSearchInput(e.target.value);
+        }}
       />
     </SearchBarContainer>
   );

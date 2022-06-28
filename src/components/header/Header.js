@@ -4,11 +4,11 @@ import styled from "styled-components";
 import NavLink from "./NavLink";
 import SearchBar from "./SearchBar";
 
-const Header = () => {
+const Header = ({ placeholder }) => {
   return (
     <HeaderContainer>
       <StyledP>Star Wars Planets and People</StyledP>
-      <SearchBar />
+      <SearchBar placeholder={placeholder} />
       <NavLinksContainer>
         <NavLink text="All Planets" link="/" />
         <NavLink text="Planet Info" link="/planet" />
@@ -33,9 +33,9 @@ const HeaderContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  `;
+`;
 
-  const StyledP = styled.p`
-    font-weight: bold;
-    margin-left: 3%;
-  `;
+const StyledP = styled.p`
+  font-weight: bold;
+  margin-left: 3%;
+`;
