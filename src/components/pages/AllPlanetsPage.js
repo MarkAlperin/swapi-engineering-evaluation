@@ -13,7 +13,9 @@ const AllPlanetsPage = () => {
     <>
       <Header placeholder={"planet"}/>
       <PlanetsContainer height={height}>
-        {appCtx.planets.map((planet, idx) => (
+        {appCtx.planets.filter(planet => {
+          return planet.name.toLowerCase().includes(appCtx.searchInput.toLowerCase());
+        }).map((planet, idx) => (
           <PlanetCard key={idx} planet={planet} />
         ))}
       </PlanetsContainer>
