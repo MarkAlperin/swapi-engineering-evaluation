@@ -22,7 +22,9 @@ const SearchBar = ({ placeholder }) => {
   const clearSearchBar = (e) => {
     e.preventDefault();
     setSearchInput("");
-    console.log(appCtx.nestedResidentData);
+    // console.log(appCtx.nestedResidentData);
+    console.log(appCtx.residents)
+    console.log(appCtx.currentResidents);
   };
 
   return (

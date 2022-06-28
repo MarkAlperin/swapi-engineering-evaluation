@@ -13,12 +13,6 @@ const helpers = {
     });
   },
 
-  formatNestedResidentData: (data, nestedResidentData) => {
-    const key = Object.keys(data)[0];
-    let updatedResidentData = {...nestedResidentData, [key]: data[key]};
-    console.log(updatedResidentData);
-    return updatedResidentData;
-  },
 };
 
 export default helpers;

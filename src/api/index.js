@@ -20,6 +20,20 @@ const api = {
       console.error(err);
     }
   },
+
+  getAllNestedDataSwapi: async (keywords) => {
+    try {
+      let nestedData = {};
+      for (let i = 0; i < keywords.length; i++) {
+        const keyword = keywords[i];
+        const data = await api.getAllSwapi(keyword);
+        nestedData = { ...nestedData, ...data };
+      }
+      return nestedData;
+    } catch (err) {
+      console.error(err);
+    }
+  },
 };
 
 export default api;

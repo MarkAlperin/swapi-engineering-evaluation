@@ -32,18 +32,18 @@ export const AppContextProvider = ({ children }) => {
     }).catch((err) => {
       console.error(err);
     });
+
+    api.getAllSwapi("planets").then((data) => {
+      setPlanets(data.planets);
+      console.log(`Fetched planets in: ${Math.round(performance.now() - t0)}ms`);
+    }).catch((err) => {
+      console.error(err);
+    });
   }, []);
 
   useEffect(() => {
-    if (planets.length && !Object.keys(nestedResidentData).length) {
+    if (planets.length) {
       const t0 = performance.now();
-      api.getAllSwapi("planets").then((data) => {
-        setPlanets(data.planets);
-        console.log(`Fetched planets in: ${Math.round(performance.now() - t0)}ms`);
-      }).catch((err) => {
-        console.error(err);
-      });
-
       api.getAllSwapi("people").then((data) => {
         setResidents(data.people);
         console.log(`Fetched residents in: ${Math.round(performance.now() - t0)}ms`);
@@ -51,30 +51,10 @@ export const AppContextProvider = ({ children }) => {
         console.error(err);
       });
 
-      api.getAllSwapi("vehicles").then((data) => {
-        setNestedResidentData(helpers.formatNestedResidentData(data, nestedResidentData))
-        console.log(`Fetched vehicles in: ${Math.round(performance.now() - t0)}ms`);
-      }).catch((err) => {
-        console.error(err);
-      });
-
-      api.getAllSwapi("films").then((data) => {
-        setNestedResidentData(helpers.formatNestedResidentData(data, nestedResidentData))
-        console.log(`Fetched films in: ${Math.round(performance.now() - t0)}ms`);
-      }).catch((err) => {
-        console.error(err);
-      });
-
-      api.getAllSwapi("species").then((data) => {
-        setNestedResidentData(helpers.formatNestedResidentData(data, nestedResidentData))
-        console.log(`Fetched species in: ${Math.round(performance.now() - t0)}ms`);
-      }).catch((err) => {
-        console.error(err);
-      });
-
-      api.getAllSwapi("starships").then((data) => {
-        setNestedResidentData(helpers.formatNestedResidentData(data, nestedResidentData))
-        console.log(`Fetched starships in: ${Math.round(performance.now() - t0)}ms`);
+      const keywords = ["species", "films", "vehicles", "starships"];
+      api.getAllNestedDataSwapi(keywords).then((data) => {
+        setNestedResidentData(data);
+        console.log(`Fetched nestedResidentData in: ${Math.round(performance.now() - t0)}ms`);
       }).catch((err) => {
         console.error(err);
       });
