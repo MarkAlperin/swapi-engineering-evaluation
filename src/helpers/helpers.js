@@ -11,6 +11,7 @@ const helpers = {
     strings.forEach((str) => {
       nums.push(helpers.getNumFromString(str));
     });
+    return nums;
   },
 
 };

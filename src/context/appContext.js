@@ -61,12 +61,6 @@ export const AppContextProvider = ({ children }) => {
     }
   }, [planets]);
 
-
-
-  const setCurrentResidentsHandler = (residents) => {
-  setCurrentResidents(helpers.getNumsFromStrings(residents));
-};
-
   return (
     <AppContext.Provider
       value={{
@@ -77,7 +71,6 @@ export const AppContextProvider = ({ children }) => {
         setCurrentPlanet,
         residents,
         currentResidents,
-        setCurrentResidentsHandler,
         nestedResidentData,
       }}
     >

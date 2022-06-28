@@ -11,7 +11,6 @@ const PlanetCard = ({ planet }) => {
 
   const planetClickHandler = () => {
     appCtx.setCurrentPlanet(planet);
-    appCtx.setCurrentResidentsHandler(planet.residents);
     navigate("/planet");
   };
 
