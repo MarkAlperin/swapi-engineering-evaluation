@@ -8,8 +8,6 @@ const SearchBar = ({ placeholder }) => {
   const [searchInput, setSearchInput] = useState("");
   const width = window.innerWidth * 0.4;
 
-  console.log(placeholder);
-
   useEffect(() => {
     let debouncer;
     clearTimeout(debouncer);
@@ -21,14 +19,22 @@ const SearchBar = ({ placeholder }) => {
     };
   }, [searchInput]);
 
+  const clearSearchBar = (e) => {
+    e.preventDefault();
+    setSearchInput("");
+    console.log(appCtx.nestedResidentData);
+  };
+
   return (
     <SearchBarContainer width={width}>
       <SearchBarInput
+        value={searchInput}
         placeholder={`Search for a ${placeholder}...`}
         onChange={(e) => {
           setSearchInput(e.target.value);
         }}
       />
+      <button onClick={clearSearchBar}>Clear</button>
     </SearchBarContainer>
   );
 };

@@ -7,7 +7,7 @@ import Header from "../header/Header";
 
 const AllPlanetsPage = () => {
   const appCtx = useContext(AppContext);
-  const height = window.innerHeight * 0.85;
+  const height = window.innerHeight * 0.78;
 
   return (
     <>

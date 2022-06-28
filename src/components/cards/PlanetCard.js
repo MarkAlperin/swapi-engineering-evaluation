@@ -7,6 +7,7 @@ import AppContext from "../../context/appContext";
 const PlanetCard = ({ planet }) => {
   const appCtx = useContext(AppContext);
   const navigate = useNavigate();
+  const height = window.innerHeight * 0.08;
 
   const planetClickHandler = () => {
     appCtx.setCurrentPlanet(planet);
@@ -15,10 +16,11 @@ const PlanetCard = ({ planet }) => {
   };
 
   return (
-    <PlanetDisplayContainer onClick={planetClickHandler}>
-      <h4>{planet.name}</h4>
+    <PlanetDisplayContainer onClick={planetClickHandler} height={height}>
+
       <StyledSpan>
-        <p>Terrain: {planet.terrain}</p>
+        <StyledPlanetName>{planet.name}</StyledPlanetName>
+        <StyledP>Terrain: {planet.terrain}</StyledP>
 
         <StyledP>Pop: {planet.population}</StyledP>
 
@@ -35,7 +37,8 @@ const PlanetDisplayContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin: 10px;
-  width: 60%;
+  width: 75%;
+  height: ${({ height }) => height}px;
   border: 2px solid black;
   border-radius: 10px;
   cursor: pointer;
@@ -50,4 +53,9 @@ const StyledSpan = styled.span`
 const StyledP = styled.p`
   margin-left: 10px;
   margin-right: 10px;
+`;
+
+const StyledPlanetName = styled.p`
+  align-self: flex-start;
+  font-weight: bold;
 `;

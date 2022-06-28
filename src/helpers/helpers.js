@@ -15,7 +15,9 @@ const helpers = {
 
   formatNestedResidentData: (data, nestedResidentData) => {
     const key = Object.keys(data)[0];
-    return {...nestedResidentData, [key]: data[key]};
+    let updatedResidentData = {...nestedResidentData, [key]: data[key]};
+    console.log(updatedResidentData);
+    return updatedResidentData;
   },
 };
 

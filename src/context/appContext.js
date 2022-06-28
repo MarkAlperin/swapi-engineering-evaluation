@@ -12,7 +12,7 @@ const AppContext = React.createContext({
   residents: [],
   currentResidents: [],
   setCurrentResidentsHandler: () => {},
-  extraResidentData: {},
+  nestedResidentData: {},
 });
 
 export const AppContextProvider = ({ children }) => {
@@ -74,7 +74,7 @@ export const AppContextProvider = ({ children }) => {
 
       api.getAllSwapi("starships").then((data) => {
         setNestedResidentData(helpers.formatNestedResidentData(data, nestedResidentData))
-        console.log(`Fetched vehicles in: ${Math.round(performance.now() - t0)}ms`);
+        console.log(`Fetched starships in: ${Math.round(performance.now() - t0)}ms`);
       }).catch((err) => {
         console.error(err);
       });
@@ -98,6 +98,7 @@ export const AppContextProvider = ({ children }) => {
         residents,
         currentResidents,
         setCurrentResidentsHandler,
+        nestedResidentData,
       }}
     >
       {children}
