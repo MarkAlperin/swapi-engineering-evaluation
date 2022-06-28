@@ -3,21 +3,22 @@ import styled from "styled-components";
 
 import AppContext from "../../context/appContext";
 import PlanetCard from "../cards/PlanetCard";
+import Header from "../header/Header";
 
 const AllPlanetsPage = () => {
   const appCtx = useContext(AppContext);
-  const height = window.innerHeight * 0.8;
+  const height = window.innerHeight * 0.85;
 
 
   return (
-    <div>
-      <h1>This is the All Planets Page</h1>
+    <>
+    <Header />
       <PlanetsContainer height={height}>
         {appCtx.planets.map((planet, idx) => (
           <PlanetCard key={idx} planet={planet} />
         ))}
       </PlanetsContainer>
-    </div>
+      </>
   );
 };
 
@@ -29,4 +30,5 @@ const PlanetsContainer = styled.div`
   align-items: center;
   height: ${({height}) => height}px;
   overflow-y: scroll;
+  padding: 10px;
 `;

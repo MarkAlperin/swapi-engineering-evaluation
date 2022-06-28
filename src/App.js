@@ -1,7 +1,7 @@
 import React from "react";
 
-import Router from "./components/Routes/Router";
 import { AppContextProvider } from "./context/appContext";
+import Router from "./components/Routes/Router";
 
 function App() {
   return (

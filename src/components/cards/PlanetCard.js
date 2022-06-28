@@ -11,7 +11,7 @@ const PlanetCard = ({ planet }) => {
   const planetClickHandler = () => {
     appCtx.setCurrentPlanet(planet);
     appCtx.setCurrentResidentsHandler(planet.residents);
-    navigate("/planet-page");
+    navigate("/planet");
   };
 
   return (
@@ -38,7 +38,7 @@ const PlanetDisplayContainer = styled.div`
   width: 60%;
   border: 2px solid black;
   border-radius: 10px;
-  hover: pointer;
+  cursor: pointer;
 `;
 
 const StyledSpan = styled.span`

@@ -4,8 +4,8 @@ import api from "../api/index";
 import helpers from "../helpers/helpers";
 
 const AppContext = React.createContext({
-  searchTerm: "",
-  setSearchTerm: () => {},
+  searchInput: "",
+  setSearchInput: () => {},
   planets: [],
   currentPlanet: {},
   setCurrentPlanet: () => {},
@@ -16,7 +16,7 @@ const AppContext = React.createContext({
 });
 
 export const AppContextProvider = ({ children }) => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchInput, setSearchInput] = useState("");
   const [planets, setPlanets] = useState([]);
   const [currentPlanet, setCurrentPlanet] = useState({});
   const [residents, setResidents] = useState([]);
@@ -32,8 +32,6 @@ export const AppContextProvider = ({ children }) => {
     }).catch((err) => {
       console.error(err);
     });
-
-
   }, []);
 
   useEffect(() => {
@@ -92,8 +90,8 @@ export const AppContextProvider = ({ children }) => {
   return (
     <AppContext.Provider
       value={{
-        searchTerm,
-        setSearchTerm,
+        searchInput,
+        setSearchInput,
         planets,
         currentPlanet,
         setCurrentPlanet,

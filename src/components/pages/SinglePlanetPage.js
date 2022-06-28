@@ -2,7 +2,7 @@ import React, {useContext} from "react";
 
 import AppContext from "../../context/appContext";
 
-const PlanetPage = () => {
+const SinglePlanetPage = () => {
   const appCtx = useContext(AppContext);
 
   return (
@@ -12,4 +12,4 @@ const PlanetPage = () => {
   );
 };
 
-export default PlanetPage;
+export default SinglePlanetPage;
