@@ -18,8 +18,10 @@ export const AppContextProvider = ({ children }) => {
   const [currentPlanet, setCurrentPlanet] = useState(null);
   const [currentResident, setCurrentResident] = useState(null);
 
+
   useEffect(() => {
-    api
+    if (!swapiData.planets) {
+      api
       .getAllFirebase("planets")
       .then((data) => {
         setSwapiData({ ...swapiData, planets: Object.values(data) });
@@ -27,11 +29,7 @@ export const AppContextProvider = ({ children }) => {
       .catch((err) => {
         console.error(err);
       });
-  }, []);
-
-
-  useEffect(() => {
-    if (swapiData.planets && !swapiData.people) {
+    } else if (!swapiData.people) {
       let updatedData = { ...swapiData };
       const keywords = ["people", "films", "vehicles", "starships", "species"];
 
@@ -47,7 +45,7 @@ export const AppContextProvider = ({ children }) => {
           console.error(err);
         });
     }
-  }, [swapiData.planets]);
+  }, [swapiData]);
 
   return (
     <AppContext.Provider
