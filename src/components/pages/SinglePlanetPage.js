@@ -9,6 +9,7 @@ import helpers from "../../helpers/helpers";
 const SinglePlanetPage = () => {
   const appCtx = useContext(AppContext);
   const currentPlanet = appCtx.currentPlanet || JSON.parse(localStorage.getItem("currentPlanet"));
+  const { swapiData } = appCtx;
   const {
     name,
     climate,
@@ -20,8 +21,8 @@ const SinglePlanetPage = () => {
     rotation_period,
     orbital_period,
   } = currentPlanet;
-  const { swapiData } = appCtx;
-  const height = window.innerHeight * 0.5;
+
+  console.log("currentPlanet: ", currentPlanet);
 
   return (
     <>
@@ -41,7 +42,7 @@ const SinglePlanetPage = () => {
         </PlanetInfoSpan>
       </PlanetInfoContainer>
         <StyledTitle>Residents: {residents && residents.length}</StyledTitle>
-      <ResidentsContainer height={height}>
+      <ResidentsContainer>
         {helpers.matchByUrl(residents, swapiData.people).map((resident, idx) => {
           return <ResidentCard key={idx} resident={resident} />;
         })}
@@ -79,5 +80,5 @@ const ResidentsContainer = styled.div`
   align-items: center;
   justify-content: center;
   overflow-y: scroll;
-  height: ${({ height }) => height}px;
+  height: ${window.innerHeight * 0.45}px;
 `;

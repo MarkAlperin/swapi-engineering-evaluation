@@ -25,10 +25,16 @@ const ResidentPage = () => {
     films,
   } = currentResident;
 
+  console.log("currentResident: ", currentResident);
+
+
   return (
      <div>
       <Header showSearchBar={true} placeholder={"person"} />
-      <StyledName>{name}</StyledName>>
+      {!currentResident && <h1>Please select a planet and resident...</h1>}
+      {currentResident &&
+      <>
+       <StyledName>{name}</StyledName>>
       <ResidentInfoContainer>
         <ResidentInfoSpan>
           <StyledP>Birth Year: {birth_year}</StyledP>
@@ -76,6 +82,8 @@ const ResidentPage = () => {
           </ArrayDisplayContainer>
         )}
       </TripleDisplayContainer>
+      </>
+      }
     </div>
   );
 };

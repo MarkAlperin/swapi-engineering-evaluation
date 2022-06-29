@@ -12,7 +12,7 @@ const Header = ({ placeholder, showSearchBar = true }) => {
       <NavLinksContainer>
         <NavLink text="All Planets" link="/" />
         <NavLink text="Planet Info" link="/planet" />
-        <NavLink text="People" link="/residents" />
+        <NavLink text="People" link="/resident" />
       </NavLinksContainer>
     </HeaderContainer>
   );
