@@ -9,12 +9,14 @@ const AllPlanetsPage = () => {
   const appCtx = useContext(AppContext);
   const height = window.innerHeight * 0.78;
 
+  const { planets } = appCtx.swapiData;
+
   return (
     <>
       <Header placeholder={"planet"}/>
       <PlanetsContainer height={height}>
-        {appCtx.planets.filter(planet => {
-          return planet.name.toLowerCase().includes(appCtx.searchInput.toLowerCase());
+        {planets && planets.filter(planet => {
+          return planet.name.toLowerCase().includes(appCtx.searchInput.toLowerCase()) ;
         }).map((planet, idx) => (
           <PlanetCard key={idx} planet={planet} />
         ))}

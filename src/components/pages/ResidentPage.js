@@ -7,6 +7,7 @@ import helpers from "../../helpers/helpers";
 
 const ResidentPage = () => {
   const appCtx = useContext(AppContext);
+  const { swapiData } = appCtx;
   const {
     name,
     birth_year,
@@ -20,7 +21,7 @@ const ResidentPage = () => {
     starships,
     vehicles,
   } = appCtx.currentResident;
-  const homeworldIdx = helpers.getNumFromString(homeworld);
+
 
   return (
     <div>
@@ -35,9 +36,10 @@ const ResidentPage = () => {
         <ResidentInfoSpan>
           <StyledP>Height: {height}</StyledP>
           <StyledP>Mass: {mass}</StyledP>
-          <StyledP>Homeworld: {appCtx.planets[0]}</StyledP>
+        {homeworld && <StyledP>Homeworld: {swapiData.planets[helpers.getNumFromString(homeworld)].name}</StyledP>}
         </ResidentInfoSpan>
       </ResidentInfoContainer>
+
     </div>
   );
 };

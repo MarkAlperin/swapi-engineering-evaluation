@@ -23,7 +23,7 @@ const PlanetCard = ({ planet }) => {
 
         <StyledP>Pop: {planet.population}</StyledP>
 
-        <StyledP>Residents: {planet.residents.length}</StyledP>
+        <StyledP>Residents: {planet.residents ? planet.residents.length : 0}</StyledP>
       </StyledSpan>
     </PlanetDisplayContainer>
   );

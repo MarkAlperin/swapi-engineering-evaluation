@@ -1,60 +1,75 @@
 import React, { useState, useEffect } from "react";
 
 import api from "../api/index";
-import helpers from "../helpers/helpers";
 
 const AppContext = React.createContext({
   searchInput: "",
   setSearchInput: () => {},
-  planets: [],
   currentPlanet: {},
   setCurrentPlanet: () => {},
-  residents: [],
   currentResident: {},
   setCurrentResident: () => {},
-  nestedResidentData: {},
+  swapiData: {},
 });
 
 export const AppContextProvider = ({ children }) => {
   const [searchInput, setSearchInput] = useState("");
-  const [planets, setPlanets] = useState([]);
+  const [swapiData, setSwapiData] = useState({});
   const [currentPlanet, setCurrentPlanet] = useState({});
-  const [residents, setResidents] = useState([]);
   const [currentResident, setCurrentResident] = useState({});
-  const [nestedResidentData, setNestedResidentData] = useState({});
 
   useEffect(() => {
-    const t0 = performance.now();
-    api.getAllFirebase("planets").then((data) => {
-      console.log(`api.getAll planets took: ${Math.round(performance.now() - t0)} milliseconds.`);
-      console.log(Object.values(data))
-;     setPlanets(Object.values(data));
-    });
+    api
+      .getAllFirebase("planets")
+      .then((data) => {
+        setSwapiData({ ...swapiData, planets: Object.values(data) });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }, []);
 
-  // useEffect(() => {
-  //   if (planets.length) {
-  //     const t0 = performance.now();
-  //     api.getAllFirebase("people").then((data) => {
-  //       const t1 = performance.now();
-  //       console.log(`api.getAllFirebase() took ${t1 - t0} milliseconds.`);
-  //       setResidents(data);
-  //     })
-  //   }
-  // }, [planets]);
+  useEffect(() => {
+    if (swapiData.planets) {
+      let updatedData = { ...swapiData };
+      api
+        .getAllFirebase("people")
+        .then((data) => {
+          updatedData = { ...updatedData, people: Object.values(data) };
+          return api.getAllFirebase("films");
+        })
+        .then((data) => {
+          updatedData = { ...updatedData, films: Object.values(data) };
+          return api.getAllFirebase("species");
+        })
+        .then((data) => {
+          updatedData = { ...updatedData, species: Object.values(data) };
+          return api.getAllFirebase("vehicles");
+        })
+        .then((data) => {
+          updatedData = { ...updatedData, vehicles: Object.values(data) };
+          return api.getAllFirebase("starships");
+        })
+        .then((data) => {
+          updatedData = { ...updatedData, starships: Object.values(data) };
+          setSwapiData(updatedData);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  }, [swapiData.planets]);
 
   return (
     <AppContext.Provider
       value={{
         searchInput,
         setSearchInput,
-        planets,
         currentPlanet,
         setCurrentPlanet,
-        residents,
         currentResident,
         setCurrentResident,
-        nestedResidentData,
+        swapiData,
       }}
     >
       {children}

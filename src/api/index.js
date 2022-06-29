@@ -6,7 +6,6 @@ const api = {
     try {
       const url = `https://swapi-planets-and-people-default-rtdb.firebaseio.com/${keyword}.json`;
       const response = await axios.get(url);
-      console.log(response.data);
       return response.data;
     } catch (err) {
       console.error(err);
@@ -33,12 +32,11 @@ const api = {
     }
   },
 
-  getAllNestedDataSwapi: async (keywords) => {
+  getAllArraySwapi: async (keywords) => {
     try {
       let nestedData = {};
       for (let i = 0; i < keywords.length; i++) {
-        const keyword = keywords[i];
-        const data = await api.getAllSwapi(keyword);
+        const data = await api.getAllSwapi(keywords[i]);
         nestedData = { ...nestedData, ...data };
       }
       return nestedData;

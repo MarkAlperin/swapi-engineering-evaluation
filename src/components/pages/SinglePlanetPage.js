@@ -38,11 +38,10 @@ const SinglePlanetPage = () => {
           <StyledP>Orbital: {orbital_period}</StyledP>
         </PlanetInfoSpan>
       </PlanetInfoContainer>
-        <StyledTitle>Residents: {residents.length}</StyledTitle>
+        <StyledTitle>Residents: {residents && residents.length}</StyledTitle>
       <ResidentsContainer height={height}>
-        {residents.map((resident, idx) => {
-          const residentIdx = helpers.getNumFromString(resident);
-          return <ResidentCard key={idx} resident={appCtx.residents[residentIdx - 1]} />;
+        {residents && residents.map((resident, idx) => {
+          return <ResidentCard key={idx} resident={appCtx.swapiData.people[resident - 1]} />;
         })}
       </ResidentsContainer>
     </>
