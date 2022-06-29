@@ -10,5 +10,5 @@ Performance reports from GooglePageSpeed and GoogleLighthouse:
 
  It is largely ustyled, forgive it's plain appearance! 
  <p align="center"><img src="/assets/allPlanets.png" alt="performance report" width="50%" height="auto" border="2px solid white"/></p>
- <p align="center"><img src="/assets/People.png" alt="performance report" width="80%" height="auto"  border="2px solid white"/></p>
+ <p align="center"><img src="/assets/People.png" alt="performance report" width="50%" height="auto"  border="2px solid white"/></p>
  
