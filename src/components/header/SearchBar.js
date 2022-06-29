@@ -2,8 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 
 import AppContext from "../../context/appContext";
-// import loadArrayOfObjects from "../../api/etlScript";
-import api from "../../api/index";
+
 
 const SearchBar = ({ placeholder }) => {
   const appCtx = useContext(AppContext);
@@ -24,8 +23,7 @@ const SearchBar = ({ placeholder }) => {
   const clearSearchBar = (e) => {
     e.preventDefault();
     setSearchInput("");
-    console.log(appCtx.swapiData);
-  };
+}
 
   return (
     <SearchBarContainer width={width}>

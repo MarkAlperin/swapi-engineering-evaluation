@@ -12,8 +12,6 @@ const SinglePlanetPage = () => {
     appCtx.currentPlanet || JSON.parse(localStorage.getItem("currentPlanet"));
   const { swapiData } = appCtx;
 
-  console.log("currentPlanet: ", currentPlanet);
-
   return (
     <>
       <Header showSearchBar={false} />

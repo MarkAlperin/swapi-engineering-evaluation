@@ -15,7 +15,7 @@ const ResidentPage = () => {
 
   return (
     <>
-      <Header showSearchBar={true} placeholder={"person"} />
+      <Header showSearchBar={false} placeholder={"person"} />
       {!currentResident && <h1>Please select a planet and resident...</h1>}
       {currentResident && (
         <>
@@ -101,16 +101,6 @@ const ResidentInfoSpan = styled.span`
 `;
 
 const StyledP = styled.p``;
-
-const ResidentsContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  overflow-y: scroll;
-  height: ${({ height }) => height}px;
-`;
 
 const TripleDisplayContainer = styled.div`
   display: flex;

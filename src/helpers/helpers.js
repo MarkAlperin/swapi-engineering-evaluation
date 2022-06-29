@@ -17,7 +17,6 @@ const helpers = {
     let sorted =  Object.values(data).sort((a, b) => {
       return Number(helpers.getNumFromString(a.url)) - Number(helpers.getNumFromString(b.url));
     })
-    console.log(sorted)
     return sorted;
   },
 

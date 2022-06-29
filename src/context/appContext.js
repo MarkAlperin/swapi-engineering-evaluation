@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 import api from "../api/index";
-import helpers from "../helpers/helpers";
 
 const AppContext = React.createContext({
   searchInput: "",
@@ -30,31 +29,20 @@ export const AppContextProvider = ({ children }) => {
       });
   }, []);
 
+
   useEffect(() => {
     if (swapiData.planets) {
       let updatedData = { ...swapiData };
-      api
-        .getAllFirebase("people")
-        .then((data) => {
-          updatedData = { ...updatedData, people: Object.values(data) };
-          return api.getAllFirebase("films");
+      const keywords = ["people", "films", "vehicles", "starships", "species"];
+
+      Promise.all(keywords.map((keyword) => {
+        return api.getAllFirebase(keyword)
+      })).then((data) => {
+        data.forEach((item, idx) => {
+          updatedData = {...updatedData, [keywords[idx]]: Object.values(item)}
         })
-        .then((data) => {
-          updatedData = { ...updatedData, films: Object.values(data) };
-          return api.getAllFirebase("species");
-        })
-        .then((data) => {
-          updatedData = { ...updatedData, species: Object.values(data) };
-          return api.getAllFirebase("vehicles");
-        })
-        .then((data) => {
-          updatedData = { ...updatedData, vehicles: Object.values(data) };
-          return api.getAllFirebase("starships");
-        })
-        .then((data) => {
-          updatedData = { ...updatedData, starships: Object.values(data) };
-          setSwapiData(updatedData);
-        })
+        setSwapiData(updatedData);
+      })
         .catch((err) => {
           console.error(err);
         });
