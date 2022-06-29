@@ -20,31 +20,26 @@ export const AppContextProvider = ({ children }) => {
 
 
   useEffect(() => {
+    let keywords = [];
+    let updatedData = { ...swapiData };
     if (!swapiData.planets) {
-      api
-      .getAllFirebase("planets")
-      .then((data) => {
-        setSwapiData({ ...swapiData, planets: Object.values(data) });
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+      keywords = ["planets"];
     } else if (!swapiData.people) {
-      let updatedData = { ...swapiData };
-      const keywords = ["people", "films", "vehicles", "starships", "species"];
-
+      keywords = ["people", "films", "vehicles", "starships", "species"];
+    }
       Promise.all(keywords.map((keyword) => {
         return api.getAllFirebase(keyword)
       })).then((data) => {
         data.forEach((item, idx) => {
           updatedData = {...updatedData, [keywords[idx]]: Object.values(item)}
         })
-        setSwapiData(updatedData);
+        if (data.length) {
+          setSwapiData(updatedData);
+        }
       })
         .catch((err) => {
           console.error(err);
         });
-    }
   }, [swapiData]);
 
   return (
