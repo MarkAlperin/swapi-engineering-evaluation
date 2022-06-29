@@ -8,45 +8,46 @@ import helpers from "../../helpers/helpers";
 
 const SinglePlanetPage = () => {
   const appCtx = useContext(AppContext);
-  const currentPlanet = appCtx.currentPlanet || JSON.parse(localStorage.getItem("currentPlanet"));
+  const currentPlanet =
+    appCtx.currentPlanet || JSON.parse(localStorage.getItem("currentPlanet"));
   const { swapiData } = appCtx;
-  const {
-    name,
-    climate,
-    terrain,
-    population,
-    residents,
-    gravity,
-    surface_water,
-    rotation_period,
-    orbital_period,
-  } = currentPlanet;
 
   console.log("currentPlanet: ", currentPlanet);
 
   return (
     <>
       <Header showSearchBar={false} />
-      <StyledTitle>{name}</StyledTitle>
-      <PlanetInfoContainer>
-        <PlanetInfoSpan>
-          <StyledP>Climate: {climate}</StyledP>
-          <StyledP>Terrain: {terrain}</StyledP>
-          <StyledP>Pop: {population}</StyledP>
-        </PlanetInfoSpan>
-        <PlanetInfoSpan>
-          <StyledP>Gravity: {gravity}</StyledP>
-          <StyledP>Water: {surface_water}</StyledP>
-          <StyledP>Rotation: {rotation_period}</StyledP>
-          <StyledP>Orbital: {orbital_period}</StyledP>
-        </PlanetInfoSpan>
-      </PlanetInfoContainer>
-        <StyledTitle>Residents: {residents && residents.length}</StyledTitle>
-      <ResidentsContainer>
-        {helpers.matchByUrl(residents, swapiData.people).map((resident, idx) => {
-          return <ResidentCard key={idx} resident={resident} />;
-        })}
-      </ResidentsContainer>
+      {!currentPlanet && <h1>Please select a planet...</h1>}
+      {currentPlanet && (
+        <>
+          {" "}
+          <StyledTitle>{currentPlanet.name}</StyledTitle>
+          <PlanetInfoContainer>
+            <PlanetInfoSpan>
+              <StyledP>Climate: {currentPlanet.climate}</StyledP>
+              <StyledP>Terrain: {currentPlanet.terrain}</StyledP>
+              <StyledP>Pop: {currentPlanet.population}</StyledP>
+            </PlanetInfoSpan>
+            <PlanetInfoSpan>
+              <StyledP>Gravity: {currentPlanet.gravity}</StyledP>
+              <StyledP>Water: {currentPlanet.surface_water}</StyledP>
+              <StyledP>Rotation: {currentPlanet.rotation_period}</StyledP>
+              <StyledP>Orbital: {currentPlanet.orbital_period}</StyledP>
+            </PlanetInfoSpan>
+          </PlanetInfoContainer>
+          <StyledTitle>
+            Residents:{" "}
+            {currentPlanet.residents && currentPlanet.residents.length}
+          </StyledTitle>
+          <ResidentsContainer>
+            {helpers
+              .matchByUrl(currentPlanet.residents, swapiData.people)
+              .map((resident, idx) => {
+                return <ResidentCard key={idx} resident={resident} />;
+              })}
+          </ResidentsContainer>
+        </>
+      )}
     </>
   );
 };

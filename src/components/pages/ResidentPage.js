@@ -8,83 +8,75 @@ import helpers from "../../helpers/helpers";
 
 const ResidentPage = () => {
   const appCtx = useContext(AppContext);
-  const currentResident = appCtx.currentResident || JSON.parse(localStorage.getItem("currentResident"));
+  const currentResident =
+    appCtx.currentResident ||
+    JSON.parse(localStorage.getItem("currentResident"));
   const { swapiData } = appCtx;
-  const {
-    name,
-    birth_year,
-    eye_color,
-    hair_color,
-    height,
-    mass,
-    homeworld,
-    gender,
-    species,
-    starships,
-    vehicles,
-    films,
-  } = currentResident;
-
-  console.log("currentResident: ", currentResident);
-
 
   return (
-     <div>
+    <>
       <Header showSearchBar={true} placeholder={"person"} />
       {!currentResident && <h1>Please select a planet and resident...</h1>}
-      {currentResident &&
-      <>
-       <StyledName>{name}</StyledName>>
-      <ResidentInfoContainer>
-        <ResidentInfoSpan>
-          <StyledP>Birth Year: {birth_year}</StyledP>
-          <StyledP>Eye Color: {eye_color}</StyledP>
-          <StyledP>Hair Color: {hair_color}</StyledP>
-        </ResidentInfoSpan>
-        <ResidentInfoSpan>
-          <StyledP>Height: {height}</StyledP>
-          <StyledP>Mass: {mass}</StyledP>
-          {homeworld && swapiData.planets && (
-            <StyledP>
-              Homeworld:{" "}
-              {helpers.matchByUrl(homeworld, swapiData.planets)[0].name}
-            </StyledP>
-          )}
-        </ResidentInfoSpan>
-      </ResidentInfoContainer>
-      <TripleDisplayContainer>
-        {films && (
-          <ArrayDisplayContainer>
-            <StyledName>Films</StyledName>
-            {helpers.matchByUrl(films, swapiData.films).map((film, idx) => {
-              return <GenericCard key={idx} item={film} type={"film"}/>;
-            })}
-          </ArrayDisplayContainer>
-        )}
-        {starships && (
-          <ArrayDisplayContainer>
-            <StyledName>Starships</StyledName>
-            {helpers
-              .matchByUrl(starships, swapiData.starships)
-              .map((starship, idx) => {
-                return <GenericCard key={idx} item={starship} />;
-              })}
-          </ArrayDisplayContainer>
-        )}
-        {vehicles && (
-          <ArrayDisplayContainer>
-            <StyledName>Vehicles</StyledName>
-            {helpers
-              .matchByUrl(vehicles, swapiData.vehicles)
-              .map((vehicle, idx) => {
-                return <GenericCard key={idx} item={vehicle} />;
-              })}
-          </ArrayDisplayContainer>
-        )}
-      </TripleDisplayContainer>
-      </>
-      }
-    </div>
+      {currentResident && (
+        <>
+          <StyledName>{currentResident.name}</StyledName>>
+          <ResidentInfoContainer>
+            <ResidentInfoSpan>
+              <StyledP>Birth Year: {currentResident.birth_year}</StyledP>
+              <StyledP>Eye Color: {currentResident.eye_color}</StyledP>
+              <StyledP>Hair Color: {currentResident.hair_color}</StyledP>
+            </ResidentInfoSpan>
+            <ResidentInfoSpan>
+              <StyledP>Height: {currentResident.height}</StyledP>
+              <StyledP>Mass: {currentResident.mass}</StyledP>
+              {currentResident.homeworld && swapiData.planets && (
+                <StyledP>
+                  Homeworld:{" "}
+                  {
+                    helpers.matchByUrl(
+                      currentResident.homeworld,
+                      swapiData.planets
+                    )[0].name
+                  }
+                </StyledP>
+              )}
+            </ResidentInfoSpan>
+          </ResidentInfoContainer>
+          <TripleDisplayContainer>
+            {currentResident.films && (
+              <ArrayDisplayContainer>
+                <StyledName>Films</StyledName>
+                {helpers
+                  .matchByUrl(currentResident.films, swapiData.films)
+                  .map((film, idx) => {
+                    return <GenericCard key={idx} item={film} type={"film"} />;
+                  })}
+              </ArrayDisplayContainer>
+            )}
+            {currentResident.starships && (
+              <ArrayDisplayContainer>
+                <StyledName>Starships</StyledName>
+                {helpers
+                  .matchByUrl(currentResident.starships, swapiData.starships)
+                  .map((starship, idx) => {
+                    return <GenericCard key={idx} item={starship} />;
+                  })}
+              </ArrayDisplayContainer>
+            )}
+            {currentResident.vehicles && (
+              <ArrayDisplayContainer>
+                <StyledName>Vehicles</StyledName>
+                {helpers
+                  .matchByUrl(currentResident.vehicles, swapiData.vehicles)
+                  .map((vehicle, idx) => {
+                    return <GenericCard key={idx} item={vehicle} />;
+                  })}
+              </ArrayDisplayContainer>
+            )}
+          </TripleDisplayContainer>
+        </>
+      )}
+    </>
   );
 };
 
