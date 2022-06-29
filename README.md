@@ -8,7 +8,7 @@ It is currently deployed here:
 Performance reports from GooglePageSpeed and GoogleLighthouse:
 <div border="2px solid white"><p align="center"><img src="/assets/performance.png" alt="performance report" width="80%" height="auto" /></p></div>
 
- It is largely ustyled, forgive it's plain appearance! 
+ It is largely unstyled, forgive it's plain appearance! 
  <p align="center"><img src="/assets/allPlanets.png" alt="performance report" width="50%" height="auto" border="2px solid white"/></p>
  <p align="center"><img src="/assets/People.png" alt="performance report" width="50%" height="auto"  border="2px solid white"/></p>
  
