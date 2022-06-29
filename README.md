@@ -9,6 +9,6 @@ Performance reports from GooglePageSpeed and GoogleLighthouse:
 <p align="center"><img src="/assets/performance.png" alt="performance report" width="80%" height="auto" /></p>
 
  It is largely ustyled, forgive it's plain appearance! 
- <p align="center"><img src="/assets/allPlanets.png" alt="performance report" width="50%" height="auto" border: "2px solid white"/></p>
+ <div border: "2px solid white" align="center" width="50%"><p align="center"><img src="/assets/allPlanets.png" alt="performance report" width="50%" height="auto" /></p></div>
  <p align="center"><img src="/assets/People.png" alt="performance report" width="80%" height="auto"  border: "2px solid white"/></p>
  
