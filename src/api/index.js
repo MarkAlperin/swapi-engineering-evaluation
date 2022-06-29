@@ -1,6 +1,18 @@
 import axios from "axios";
 
 const api = {
+
+  getAllFirebase: async (keyword) => {
+    try {
+      const url = `https://swapi-planets-and-people-default-rtdb.firebaseio.com/${keyword}.json`;
+      const response = await axios.get(url);
+      console.log(response.data);
+      return response.data;
+    } catch (err) {
+      console.error(err);
+    }
+  },
+
   getAllSwapi: async (keyword, initialLoad = false, url, results = []) => {
     try {
       url = url || `https://swapi.dev/api/${keyword}`;

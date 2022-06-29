@@ -1,5 +1,4 @@
 const helpers = {
-
   getNumFromString: (str) => {
     // returns only first number from results;
     const num = str.match(/\d+/g);
@@ -13,7 +12,6 @@ const helpers = {
     });
     return nums;
   },
-
 };
 
 export default helpers;

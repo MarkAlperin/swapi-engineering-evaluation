@@ -12,7 +12,7 @@ const Router = () => {
         <Routes>
           <Route path="/" element={<AllPlanetsPage />} />
           <Route path="/planet" element={<SinglePlanetPage />} />
-          <Route path="/residents" element={<ResidentPage />} />
+          <Route path="/resident" element={<ResidentPage />} />
         </Routes>
     </BrowserRouter>
   );

@@ -10,8 +10,8 @@ const AppContext = React.createContext({
   currentPlanet: {},
   setCurrentPlanet: () => {},
   residents: [],
-  currentResidents: [],
-  setCurrentResidentsHandler: () => {},
+  currentResident: {},
+  setCurrentResident: () => {},
   nestedResidentData: {},
 });
 
@@ -20,46 +20,28 @@ export const AppContextProvider = ({ children }) => {
   const [planets, setPlanets] = useState([]);
   const [currentPlanet, setCurrentPlanet] = useState({});
   const [residents, setResidents] = useState([]);
-  const [currentResidents, setCurrentResidents] = useState([]);
+  const [currentResident, setCurrentResident] = useState({});
   const [nestedResidentData, setNestedResidentData] = useState({});
 
   useEffect(() => {
     const t0 = performance.now();
-    const initialPageLoad = true;
-    api.getAllSwapi("planets", initialPageLoad).then((data) => {
-      setPlanets(data.planets);
-      console.log(`Fetched initial-load planets in: ${Math.round(performance.now() - t0)}ms`);
-    }).catch((err) => {
-      console.error(err);
-    });
-
-    api.getAllSwapi("planets").then((data) => {
-      setPlanets(data.planets);
-      console.log(`Fetched planets in: ${Math.round(performance.now() - t0)}ms`);
-    }).catch((err) => {
-      console.error(err);
+    api.getAllFirebase("planets").then((data) => {
+      console.log(`api.getAll planets took: ${Math.round(performance.now() - t0)} milliseconds.`);
+      console.log(Object.values(data))
+;     setPlanets(Object.values(data));
     });
   }, []);
 
-  useEffect(() => {
-    if (planets.length) {
-      const t0 = performance.now();
-      api.getAllSwapi("people").then((data) => {
-        setResidents(data.people);
-        console.log(`Fetched residents in: ${Math.round(performance.now() - t0)}ms`);
-      }).catch((err) => {
-        console.error(err);
-      });
-
-      const keywords = ["species", "films", "vehicles", "starships"];
-      api.getAllNestedDataSwapi(keywords).then((data) => {
-        setNestedResidentData(data);
-        console.log(`Fetched nestedResidentData in: ${Math.round(performance.now() - t0)}ms`);
-      }).catch((err) => {
-        console.error(err);
-      });
-    }
-  }, [planets]);
+  // useEffect(() => {
+  //   if (planets.length) {
+  //     const t0 = performance.now();
+  //     api.getAllFirebase("people").then((data) => {
+  //       const t1 = performance.now();
+  //       console.log(`api.getAllFirebase() took ${t1 - t0} milliseconds.`);
+  //       setResidents(data);
+  //     })
+  //   }
+  // }, [planets]);
 
   return (
     <AppContext.Provider
@@ -70,7 +52,8 @@ export const AppContextProvider = ({ children }) => {
         currentPlanet,
         setCurrentPlanet,
         residents,
-        currentResidents,
+        currentResident,
+        setCurrentResident,
         nestedResidentData,
       }}
     >

@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 
 import AppContext from "../../context/appContext";
+// import loadArrayOfObjects from "../../api/etlScript";
+import api from "../../api/index";
 
 const SearchBar = ({ placeholder }) => {
   const appCtx = useContext(AppContext);
@@ -23,8 +25,9 @@ const SearchBar = ({ placeholder }) => {
     e.preventDefault();
     setSearchInput("");
     // console.log(appCtx.nestedResidentData);
-    console.log("residents: ", appCtx.residents)
-    console.log("currentResidents: ", appCtx.currentResidents);
+    // console.log("residents: ", appCtx.residents)
+    // console.log("currentResident: ", appCtx.currentResident);
+    // console.log("films: ", appCtx.residents);
   };
 
   return (

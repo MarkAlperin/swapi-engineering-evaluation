@@ -73,9 +73,10 @@ const StyledP = styled.p``;
 
 const ResidentsContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   overflow-y: scroll;
   height: ${({ height }) => height}px;
 `;
