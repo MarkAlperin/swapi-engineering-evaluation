@@ -11,6 +11,7 @@ const ResidentCard = ({ resident }) => {
 
   const residentClickHandler = () => {
     appCtx.setCurrentResident(resident);
+    localStorage.setItem("currentResident", JSON.stringify(resident));
     navigate("/resident");
   };
 

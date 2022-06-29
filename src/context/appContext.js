@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import api from "../api/index";
+import helpers from "../helpers/helpers";
 
 const AppContext = React.createContext({
   searchInput: "",
@@ -15,8 +16,8 @@ const AppContext = React.createContext({
 export const AppContextProvider = ({ children }) => {
   const [searchInput, setSearchInput] = useState("");
   const [swapiData, setSwapiData] = useState({});
-  const [currentPlanet, setCurrentPlanet] = useState({});
-  const [currentResident, setCurrentResident] = useState({});
+  const [currentPlanet, setCurrentPlanet] = useState(null);
+  const [currentResident, setCurrentResident] = useState(null);
 
   useEffect(() => {
     api

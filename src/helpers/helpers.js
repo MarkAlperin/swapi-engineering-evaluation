@@ -12,6 +12,30 @@ const helpers = {
     });
     return nums;
   },
+
+  sortByUrl: (data) => {
+    let sorted =  Object.values(data).sort((a, b) => {
+      return Number(helpers.getNumFromString(a.url)) - Number(helpers.getNumFromString(b.url));
+    })
+    console.log(sorted)
+    return sorted;
+  },
+
+  matchByUrl: (urls = [], data = []) => {
+    let results = data.filter(item => {
+      return urls.includes(helpers.getNumFromString(item.url));
+    });
+    return results
+  },
+
+  sortByNumResidents: (array) => {
+    return array.sort((a, b) => {
+      const aResidents = a.residents || [];
+      const bResidents = b.residents || [];
+      return bResidents.length - aResidents.length;
+    });
+  },
+
 };
 
 export default helpers;

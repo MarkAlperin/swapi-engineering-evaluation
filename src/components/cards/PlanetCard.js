@@ -11,6 +11,7 @@ const PlanetCard = ({ planet }) => {
 
   const planetClickHandler = () => {
     appCtx.setCurrentPlanet(planet);
+    localStorage.setItem("currentPlanet", JSON.stringify(planet));
     navigate("/planet");
   };
 
