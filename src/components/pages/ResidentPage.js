@@ -19,7 +19,7 @@ const ResidentPage = () => {
       {!currentResident && <h1>Please select a planet and resident...</h1>}
       {currentResident && (
         <>
-          <StyledName>{currentResident.name}</StyledName>>
+          <StyledName>{currentResident.name}</StyledName>
           <ResidentInfoContainer>
             <ResidentInfoSpan>
               <StyledP>Birth Year: {currentResident.birth_year}</StyledP>

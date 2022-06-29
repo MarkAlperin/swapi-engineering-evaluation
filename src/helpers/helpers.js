@@ -2,29 +2,32 @@ const helpers = {
   getNumFromString: (str) => {
     // returns only first number from results;
     const num = str.match(/\d+/g);
-    return num[0];
+    return +num[0];
   },
 
   getNumsFromStrings: (strings) => {
-    let nums = [];
-    strings.forEach((str) => {
-      nums.push(helpers.getNumFromString(str));
+    return strings.map(str => {
+      return helpers.getNumFromString(str);
     });
-    return nums;
   },
 
   sortByUrl: (data) => {
     let sorted =  Object.values(data).sort((a, b) => {
-      return Number(helpers.getNumFromString(a.url)) - Number(helpers.getNumFromString(b.url));
+      return helpers.getNumFromString(a.url) - helpers.getNumFromString(b.url);
     })
     return sorted;
   },
 
   matchByUrl: (urls = [], data = []) => {
-    let results = data.filter(item => {
-      return urls.includes(helpers.getNumFromString(item.url));
+    let urlNums = [];
+    if (Array.isArray(urls)) {
+      urlNums = helpers.getNumsFromStrings(urls);
+    } else if (typeof urls === "string") {
+      urlNums = [helpers.getNumFromString(urls)];
+    }
+    return data.filter(item => {
+      return urlNums.includes(helpers.getNumFromString(item.url));
     });
-    return results
   },
 
   sortByNumResidents: (array) => {
