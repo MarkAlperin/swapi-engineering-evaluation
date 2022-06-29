@@ -6,7 +6,7 @@ It is currently deployed here:
 <div><a href="https://swapi-planets-and-people.web.app">https://swapi-planets-and-people.web.app</a></div> 
 
 Performance reports from GooglePageSpeed and GoogleLighthouse:
-<p align="center"><img src="/assets/performance.png" alt="performance report" width="80%" height="auto" /></p>
+<div border="2px solid white"><p align="center"><img src="/assets/performance.png" alt="performance report" width="80%" height="auto" /></p></div>
 
  It is largely ustyled, forgive it's plain appearance! 
  <p align="center"><img src="/assets/allPlanets.png" alt="performance report" width="50%" height="auto" border="2px solid white"/></p>
