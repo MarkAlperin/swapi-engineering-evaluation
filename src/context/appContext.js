@@ -31,7 +31,7 @@ export const AppContextProvider = ({ children }) => {
 
 
   useEffect(() => {
-    if (swapiData.planets) {
+    if (swapiData.planets && !swapiData.people) {
       let updatedData = { ...swapiData };
       const keywords = ["people", "films", "vehicles", "starships", "species"];
 
